@@ -5,8 +5,13 @@
 
 #board-title {
   font-size: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   color: black;
+}
+
+#winnername {
+  font-size: 50px;
+  margin: 10px;
 }
 
 #board-background {
@@ -31,4 +36,8 @@
   font-size: 130px;
   border: 0.5px solid black;
   background-color: whitesmoke;
+  line-height: 170px;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
 }

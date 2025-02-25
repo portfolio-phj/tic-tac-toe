@@ -4,6 +4,8 @@ import { useState } from "react";
 function Board() {
   const [OXlist, setOXlist] = useState(["", "", "", "", "", "", "", "", ""]);
   const [isOX, setisOX] = useState(true);
+  const [winnername, setwinnername] = useState("");
+
   function handleclick(i) {
     if (OXlist[i]) return;
 
@@ -18,9 +20,11 @@ function Board() {
     console.log("OX:", isOX);
     setOXlist(copyOXlist);
     setisOX(!isOX);
+
+    Whowinner(copyOXlist);
   }
 
-  function Whowinner() {
+  function Whowinner(board) {
     const winnerlist = [
       [0, 1, 2],
       [3, 4, 5],
@@ -33,19 +37,11 @@ function Board() {
     ];
 
     for (const [a, b, c] of winnerlist) {
-      if (
-        OXlist[a] &&
-        OXlist[b] &&
-        OXlist[c] &&
-        OXlist[a] === OXlist[b] &&
-        OXlist[a] === OXlist[c]
-      ) {
-        if (OXlist[a] === "O") {
-          alert("승자는O");
-        } else;
-        {
-          alert("승자는X");
-        }
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        setwinnername(`WINNER: ${board[a]}`);
+        setTimeout(() => {
+          location.reload(true);
+        }, 5000);
       }
     }
   }
@@ -53,16 +49,15 @@ function Board() {
   return (
     <div id="board-background">
       <p id="board-title">TIC-TAC-TOE</p>
+      <p id="winnername">{winnername}</p>
       <div id="board-back">
         <div className="board-line">
           <button className="square" onClick={() => handleclick(0)}>
             {OXlist[0]}
           </button>
-
           <button className="square" onClick={() => handleclick(1)}>
             {OXlist[1]}
           </button>
-
           <button className="square" onClick={() => handleclick(2)}>
             {OXlist[2]}
           </button>
@@ -71,11 +66,9 @@ function Board() {
           <button className="square" onClick={() => handleclick(3)}>
             {OXlist[3]}
           </button>
-
           <button className="square" onClick={() => handleclick(4)}>
             {OXlist[4]}
           </button>
-
           <button className="square" onClick={() => handleclick(5)}>
             {OXlist[5]}
           </button>
@@ -84,11 +77,9 @@ function Board() {
           <button className="square" onClick={() => handleclick(6)}>
             {OXlist[6]}
           </button>
-
           <button className="square" onClick={() => handleclick(7)}>
             {OXlist[7]}
           </button>
-
           <button className="square" onClick={() => handleclick(8)}>
             {OXlist[8]}
           </button>
